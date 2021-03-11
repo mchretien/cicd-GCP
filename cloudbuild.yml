@@ -9,6 +9,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   dir: 'node'
   entrypoint: 'bash'
+  args: ['-c', 'docker logout']
   args: ['-c', 'docker login --username=chretiem --password=19618dae-bb8c-45c2-9dfd-e3b0d9921b29']
   args: ['-c', 'docker build -t chretiem/repo_tpipssi:2.0.0 .']
 - name: 'gcr.io/cloud-builders/docker'

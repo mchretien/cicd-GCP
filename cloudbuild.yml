@@ -1,6 +1,16 @@
 steps:
-- name: 'ubuntu'
-  args: ['sleep', '600']
-  timeout: 500s
-- name: 'ubuntu'
-  args: ['echo', 'hello world, after 600s']
+- name: maven:latest
+  args: ['mvn', 'clean', 'install', '-D', 'skipTest']
+- name: maven:latest
+  args: ['mvn', 'test']
+- name: node:latest
+  args: ['npm', 'run']
+  args: ['npm', 'build']
+  args: ['echo', 'hey', 'node']
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker login -u chretiem -p 19618dae-bb8c-45c2-9dfd-e3b0d9921b29']
+  args: ['-c', 'docker build -t chretiem/repo_tpipssi:2.0.0 .']
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker push chretiem/repo_tpipssi:2.0.0']

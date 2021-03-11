@@ -1,4 +1,4 @@
-FROM nodejs:latest
+FROM node:latest
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -9,6 +9,9 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY /src/package*.json ./
 
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get update && apt-get install -y nodejs
 
 RUN npm install
 # If you are building your code for production

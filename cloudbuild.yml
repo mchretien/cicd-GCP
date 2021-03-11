@@ -7,10 +7,11 @@ steps:
   dir: 'node'
   args: ['npm', 'install']
 - name: 'gcr.io/cloud-builders/docker'
+  dir: 'node'
   entrypoint: 'bash'
-  args: ['cd', 'node']
   args: ['-c', 'docker login -u chretiem -p 19618dae-bb8c-45c2-9dfd-e3b0d9921b29']
   args: ['-c', 'docker build -t chretiem/repo_tpipssi:2.0.0 .']
 - name: 'gcr.io/cloud-builders/docker'
+  dir: 'node'
   entrypoint: 'bash'
   args: ['-c', 'docker push chretiem/repo_tpipssi:2.0.0']

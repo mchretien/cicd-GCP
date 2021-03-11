@@ -3,10 +3,6 @@ steps:
   args: ['mvn', 'clean', 'install', '-D', 'skipTest']
 - name: maven:latest
   args: ['mvn', 'test']
-- name: node:latest
-  args: ['npm', 'run']
-  args: ['npm', 'build']
-  args: ['echo', 'hey', 'node']
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
   args: ['cd', 'node/']
